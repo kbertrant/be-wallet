@@ -15,7 +15,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'identifier', 'amount',
+        'gender', 'birth', 'country', 'city', 'address',
+        'email_token', 'confirmed'
     ];
 
     /**
@@ -24,6 +26,22 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email_token'
     ];
+
+    public function applications() {
+        return $this->hasMany(Application::class, 'user_id');
+    }
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class, 'user_id');
+    }
+
+    public function deposits() {
+        return $this->transactions()->where('type', Transaction::DEPOSIT);
+    }
+
+    public function withDrawls() {
+        return $this->transactions()->where('type', Transaction::WITHDRAW);
+    }
 }
