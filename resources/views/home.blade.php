@@ -1,23 +1,102 @@
-@extends('layouts.app')
+@extends('user.main')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+@section('title', ' - Home')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@section('main-content')
+    <section class="wrapper">
+        <div class="row mt">
 
-                    You are logged in!
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <span>BALANCE AVAILABLE</span>
+                <div class="showback">
+                    XAF    <span class="pull-right"> 0</span>
                 </div>
             </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                <div class="showback">
+                    <span>RECENTS ACTIVITIES</span>
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>TRANSACTIONS</th>
+                            <th class="numeric">Price</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>AAC</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 1.38</td>
+
+                        </tr>
+                        <tr>
+                            <td>AAD</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 1.15</td>
+
+                        </tr>
+                        <tr>
+                            <td>AAX</td>
+                            <td>WITHDRAW</td>
+                            <td class="numeric">xaf 4.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>ABC</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 3.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>ABP</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 1.91</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>ACR</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 3.71</td>
+
+                        </tr>
+                        <tr>
+                            <td>ADU</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 0.72</td>
+
+                        </tr>
+                        <tr>
+                            <td>AGG</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 7.81</td>
+
+                        </tr>
+                        <tr>
+                            <td>AGK</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 13.82</td>
+
+                        </tr>
+                        <tr>
+                            <td>AGO</td>
+                            <td>DEPOSIT</td>
+                            <td class="numeric">xaf 3.17</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /col-lg-9 END SECTION MIDDLE -->
+            <!-- **********************************************************************************************************************************************************
+                RIGHT SIDEBAR CONTENT
+                *********************************************************************************************************************************************************** -->
         </div>
-    </div>
-</div>
+        <!-- /row -->
+    </section>
 @endsection

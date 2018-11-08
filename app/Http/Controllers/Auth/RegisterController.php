@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Task\GenerateUserIdentifierTask;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -64,11 +65,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $task = new GenerateUserIdentifierTask();
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
+            'name'       => $data['name'],
+            'identifier' => $task->run(),
+            'email'      => $data['email'],
+            'phone'      => $data['phone'],
+            'password'   => Hash::make($data['password']),
         ]);
     }
 }
