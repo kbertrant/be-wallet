@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use App\Task\CreateOrUpdateApplicationTask;
+use App\Task\ExternalApplicationTask;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -98,5 +100,22 @@ class ApplicationController extends Controller
     public function destroy(Application $application)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getToken(Request $request)
+    {
+        $client_id = $request->get('client_id');
+        $client_secret = $request->get('client_secret');
+
+        $task = new ExternalApplicationTask();
+        $data = $task->getToken($client_id, $client_secret);
+
+        return new JsonResponse($data);
     }
 }
