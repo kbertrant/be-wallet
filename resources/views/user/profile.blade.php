@@ -2,6 +2,10 @@
 
 @section('title', ' - User profile')
 
+@section('stylesheets')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+@endsection
+
 @section('main-content')
     <section class="wrapper site-min-height">
         <div class="row mt">
@@ -106,47 +110,54 @@
                                 <div class="row">
                                     <div class="col-lg-8 col-lg-offset-2 detailed mt">
                                         <h4 class="mb">Application information</h4>
-                                        <form role="form" class="form-horizontal">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div id="app-notice">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form role="form" class="form-horizontal" action="{{ route('applications.store') }}">
+                                            @csrf
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Address 1</label>
+                                                <label class="col-lg-2 control-label">Application name :</label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder=" " id="addr1" class="form-control">
+                                                    <input type="text" placeholder=" " id="app-name" name="name" class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Address 2</label>
+                                                <label class="col-lg-2 control-label">Application URL: </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder=" " id="addr2" class="form-control">
+                                                    <input type="text" placeholder="http://mywebsite.com" id="app-url" name="url" class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Phone</label>
+                                                <label class="col-lg-2 control-label">Client ID : </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder=" " id="phone" class="form-control">
+                                                    <input type="text" placeholder="" id="client-id" name="client-id" class="form-control"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Cell</label>
+                                                <label class="col-lg-2 control-label">Client Secret : </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder=" " id="cell" class="form-control">
+                                                    <input type="text" placeholder="" id="client_secret" name="client-secret" class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Email</label>
+                                                <label class="col-lg-2 control-label">Success URL :</label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder=" " id="email" class="form-control">
+                                                    <input type="text" placeholder="Ex: http://mywebsite.com/success-url" id="surl" name="surl" class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Skype</label>
+                                                <label class="col-lg-2 control-label">Cancel URL : </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder=" " id="skype" class="form-control">
+                                                    <input type="text" placeholder="Ex: http://mywebsite.com/cancel-url" id="curl" name="curl" class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-lg-offset-2 col-lg-10">
                                                     <button class="btn btn-theme" type="submit">Save</button>
-                                                    <button class="btn btn-theme04" type="button">Cancel</button>
                                                 </div>
                                             </div>
                                         </form>
