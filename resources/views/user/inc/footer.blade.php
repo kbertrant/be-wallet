@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <div class="text-center">
         <p>
-            &copy; Copyrights <strong>BWallet</strong>. All Rights Reserved
+            &copy; Copyrights <strong>BeWallet</strong>. All Rights Reserved
         </p>
         <a href="#" class="go-top">
             <i class="fa fa-angle-up"></i>

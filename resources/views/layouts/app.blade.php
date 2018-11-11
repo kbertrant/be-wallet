@@ -18,7 +18,7 @@
 <body>
     <header>
         <nav role="navigation" class="navbar navbar-expand-xl navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand logo" href="#"><b>B<span>WALLET</span></b></a>
+            <a class="navbar-brand logo" href="#"><b>Be<span>WALLET</span></b></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

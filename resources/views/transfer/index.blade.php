@@ -3,7 +3,9 @@
 @section('title', ' - Transfer')
 
 @section('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/transfer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table-responsive.css') }}">
+               <link rel="stylesheet" type="text/css" href="{{ asset('datatables/datatables.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/transfer.css') }}">
 @endsection
 
 @section('main-content')
@@ -42,72 +44,32 @@
             </div>
             <div class="col-lg-8 col-md-6 col-sm-12">
                 <h4 class="centered">ACTIVITIES</h4>
+                <div class="row mt">
+              <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="showback">
-                    <div class="">
-                        <span>Number of transfers</span><span class="pull-right"> 0</span>
-                    </div>
+                  <div class="">
+                    <span>Number of transfers</span><span id="total" class="pull-right"> 0</span>
+                  </div>
                 </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="showback">
+                  <div class="">
+                    <span>Number of receives</span><span id="received" class="pull-right"> 0</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="showback">
+                  <div class="">
+                    <span>Number of sent</span><span id="sent" class="pull-right"> 0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
                 <div class="showback">
                     <h4 class="centered">Recent transferts</h4>
-                    <table class="table table-bordered table-striped table-condensed">
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Recipient</th>
-                            <th class="numeric">Amount</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>10-11-2018 22:11:12</td>
-                            <td>Aurel Bertrand</td>
-                            <td class="numeric">xaf 1008</td>
-
-                        </tr>
-                        <tr>
-                            <td>08-11-2018 22:11:12</td>
-                            <td>Max Alain</td>
-                            <td class="numeric">xaf 1.15</td>
-
-                        </tr>
-                        <tr>
-                            <td>09-11-2018 07:11:12</td>
-                            <td>Eric Cabrel</td>
-                            <td class="numeric">xaf 4000</td>
-
-                        </tr>
-                        <tr>
-                            <td>18-10-2018 14:50:02</td>
-                            <td>Lionel Chris</td>
-                            <td class="numeric">xaf 3.00</td>
-
-                        </tr>
-                        <tr>
-                            <td>14-10-2018 12:11:12</td>
-                            <td>San Pablo</td>
-                            <td class="numeric">xaf 72000</td>
-
-                        </tr>
-                        <tr>
-                            <td>09-11-2018 07:11:12</td>
-                            <td>Eric Cabrel</td>
-                            <td class="numeric">xaf 4000</td>
-
-                        </tr>
-                        <tr>
-                            <td>18-10-2018 14:50:02</td>
-                            <td>Lionel Chris</td>
-                            <td class="numeric">xaf 3.00</td>
-
-                        </tr>
-                        <tr>
-                            <td>14-10-2018 12:11:12</td>
-                            <td>San Pablo</td>
-                            <td class="numeric">xaf 72000</td>
-
-                        </tr>
-                        </tbody>
+                    <table id="table_transfer" class="table table-bordered table-striped table-condensed">
                     </table>
                 </div>
             </div>
@@ -116,5 +78,13 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript" src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script class="include" type="text/javascript" src="{{ asset('lib/jquery.dcjqaccordion.2.7.js') }}"></script>
+    <script src="{{ asset('lib/jquery.scrollTo.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('lib/jquery.nicescroll.js') }}" type="text/javascript"></script>
+    <!--common script for all pages-->
+    <script type="text/javascript" src="{{ asset('lib/common-scripts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/transfer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('datatables/datatables.min.js') }}"></script>
 @endsection
