@@ -21,8 +21,24 @@
     <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="login-page">
+    <div id="login-page" data-success="{{ session('register-success') ? '1' : '0' }}">
         <div class="container">
+            @if (session('register-success'))
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Account Created</h4>
+                            </div>
+                            <div class="modal-body" style="padding: 30px;">
+                                Your account has been successfully created !
+                                A confirmation link has been sent to your email address to confirm your account
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <form class="form-login" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                 @csrf
                 <h2 class="form-login-heading">Sign up</h2>
@@ -84,6 +100,12 @@
     <script type="text/javascript" src="{{ asset('lib/jquery.backstretch.min.js') }}"></script>
     <script>
         $.backstretch("img/login-bg.jpg", { speed: 500 });
+        $(function(){
+            const authSuccess = $('#login-page').data('success');
+            if(authSuccess === 1) {
+                $('#myModal').modal('show');
+            }
+        })
     </script>
 </body>
 </html>

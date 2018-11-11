@@ -18,7 +18,8 @@ class AddInfoInUsersTable extends Migration
             $table->string('amount')->default(0)->after('identifier');
             $table->string('gender')->nullable()->after('password');
             $table->date('birth')->nullable()->after('gender');
-            $table->string('country')->nullable()->after('birth');
+            $table->string('phone')->unique()->after('birth');
+            $table->string('country')->nullable()->after('phone');
             $table->string('city')->nullable()->after('country');
             $table->string('address')->nullable()->after('city');
             $table->string('email_token')->nullable()->after('address');

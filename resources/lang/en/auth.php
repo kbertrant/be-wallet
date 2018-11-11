@@ -14,6 +14,7 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
+    'not-confirmed' => 'Your account is not confirmed !',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

@@ -17,4 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/confirm-account', 'AccountController@confirmAccount')->name('confirm.account');
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'HomeController@profile')->name('profile');
+
+Route::get('transactions/checkout', 'TransactionController@checkout');
+
+Route::resource('transfers', 'TransferController');
+Route::resource('transactions', 'TransactionController');
+Route::resource('applications', 'ApplicationController');
