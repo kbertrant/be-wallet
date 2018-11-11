@@ -15,7 +15,7 @@ var BwtTransfer = function()
     };
 
     this.endpoints = {
-        searchUsers: "/bewallet/public/transfers/search-users",
+        searchUsers: "/transfers/search-users",
         register: "agencies/register"
     };
 
@@ -24,7 +24,7 @@ var BwtTransfer = function()
 
 var loadTransfers = function(userId) {
     $.ajax({
-        url: '/bewallet/public/transfers/users/data?user_id=' + userId,
+        url: '/transfers/users/data?user_id=' + userId,
         type: 'get',
         dataType: 'json',
         success: function (response) {
@@ -38,7 +38,7 @@ var loadTransfers = function(userId) {
             "sPaginationType": "full_numbers",
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "/bewallet/public/transfers/users/data?user_id=" + userId,
+            "sAjaxSource": "/transfers/users/data?user_id=" + userId,
             "aoColumns": [
                 {"sTitle": "Code", "data": "code"},
                 {"sTitle": "Amount", "data": "amount"},
@@ -77,7 +77,7 @@ $(function(){
         bwtt.canTransfer = false;
 
         $.ajax({
-            url: '/bewallet/public/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
+            url: '/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
             type: 'get',
             // data: {mpid: mpid, data: products},
             dataType: 'json',
