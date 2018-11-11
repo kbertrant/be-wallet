@@ -10,6 +10,13 @@
     <section class="wrapper site-min-height">
         <div class="row mt">
             <div class="col-lg-12">
+                @if (session('success'))
+                    <div class="alert alert-success text-center">Application updated successfully</div>
+                @elseif(session('error'))
+                    <div class="alert alert-error text-center">{{ session('error') }}</div>
+                @endif
+            </div>
+            <div class="col-lg-12">
                 <div class="row content-panel">
                     <div class="col-md-4 profile-text mt mb centered">
                         <div class="right-divider hidden-sm hidden-xs">
@@ -117,47 +124,54 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form role="form" class="form-horizontal" action="{{ route('applications.store') }}">
+                                        <form role="form" class="form-horizontal" method="post" action="{{ route('applications.store') }}">
                                             @csrf
+                                            <input type="hidden" name="app_id" value="{{ is_null($application) ? '' : $application->id }}"/>
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Application name :</label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder=" " id="app-name" name="name" class="form-control" required/>
+                                                    <input type="text" placeholder=" " id="app-name" name="name" class="form-control" required value="{{ is_null($application) ? '' : $application->name }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Application URL: </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder="http://mywebsite.com" id="app-url" name="url" class="form-control" required/>
+                                                    <input type="text" placeholder="http://mywebsite.com" id="app-url" name="url" class="form-control" required value="{{ is_null($application) ? '' : $application->url }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Client ID : </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder="" id="client-id" name="client-id" class="form-control"/>
+                                                    <input type="text" placeholder="" id="client-id" name="client-id" class="form-control" value="{{ is_null($application) ? '' : $application->client_id }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Client Secret : </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder="" id="client_secret" name="client-secret" class="form-control" required/>
+                                                    <input type="text" placeholder="" id="client_secret" name="client-secret" class="form-control" value="{{ is_null($application) ? '' : $application->token }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Success URL :</label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder="Ex: http://mywebsite.com/success-url" id="surl" name="surl" class="form-control" required/>
+                                                    <input type="text" placeholder="Ex: http://mywebsite.com/success-url" id="surl" name="surl" class="form-control" required value="{{ is_null($application) ? '' : $application->success_url }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Cancel URL : </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" placeholder="Ex: http://mywebsite.com/cancel-url" id="curl" name="curl" class="form-control" required/>
+                                                    <input type="text" placeholder="Ex: http://mywebsite.com/cancel-url" id="curl" name="curl" class="form-control" required value="{{ is_null($application) ? '' : $application->cancel_url }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-lg-offset-2 col-lg-10">
-                                                    <button class="btn btn-theme" type="submit">Save</button>
+                                                    <button class="btn btn-theme mt-2" type="submit">
+                                                        @if(is_null($application))
+                                                            <span class="fa fa-plus"></span> Create application
+                                                        @else
+                                                            <span class="fa fa-pencil"></span> Save information
+                                                        @endif
+                                                    </button>
                                                 </div>
                                             </div>
                                         </form>

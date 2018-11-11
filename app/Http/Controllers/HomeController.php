@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -33,6 +35,9 @@ class HomeController extends Controller
      */
     public function profile()
     {
-        return view('user.profile');
+        /** @var Application $application */
+        $application = Application::where('user_id', Auth::user()->id)->first();
+
+        return view('user.profile', compact('application'));
     }
 }
