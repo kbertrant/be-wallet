@@ -16,10 +16,10 @@ class Transfer extends Model
     ];
 
     public function sender() {
-        return $this->hasOne(User::class, 'sender_id');
+        return $this->belongsTo(User::class);
     }
 
     public function receiver() {
-        return $this->hasOne(User::class, 'receiver_id');
+        return $this->belongsTo(User::class);
     }
 }

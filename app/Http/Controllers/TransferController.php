@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Task\GetUserTransferListTask;
+use App\Task\TransferMoneyTask;
 use App\Transfer;
+use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransferController extends Controller
 {
@@ -31,11 +36,33 @@ class TransferController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $email = $request->get('email');
+        $identifier = $request->get('id');
+        $amount = $request->get('amount');
+        $data = ['code' => 200, 'message' => ''];
+
+        /** @var User $receiver */
+        $receiver = User::where([['email', '=', $email], ['identifier', '=', $identifier]])->first();
+
+        if(is_null($receiver)) {
+            $data['code'] = 400;
+            $data['message'] = 'Receiver not found !';
+        } else if($receiver->identifier === Auth::user()->identifier) {
+            $data['code'] = 400;
+            $data['message'] = 'Can\'t transfer money to yourself !';
+        } else if($amount > Auth::user()->amount) {
+            $data['code'] = 400;
+            $data['message'] = 'The max amount you can transfer is : ' . Auth::user()->amount;
+        } else {
+            $task = new TransferMoneyTask();
+            $data = $task->run(Auth::user(), $receiver, $amount);
+        }
+
+        return new JsonResponse($data);
     }
 
     /**
@@ -81,5 +108,51 @@ class TransferController extends Controller
     public function destroy(Transfer $transfer)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUserByIdAndEmail(Request $request)
+    {
+        $email = $request->get('email');
+        $identifier = $request->get('id');
+        $data = ['code' => 200, 'message' => ''];
+
+        /** @var User $user */
+        $user = User::where([['email', '=', $email], ['identifier', '=', $identifier]])->first();
+
+        if(is_null($user)) {
+            $data['code'] = 400;
+            $data['message'] = 'User not found !';
+        } else if($user->identifier === Auth::user()->identifier) {
+            $data['code'] = 400;
+            $data['message'] = 'Can\'t transfer money to yourself !';
+        } else {
+            $data['code'] = 200;
+            $data['message'] = $user->name;
+        }
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * Get transfers list of the user !
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getData(Request $request)
+    {
+        $userId = $request->get('user_id');
+
+        $task = new GetUserTransferListTask();
+
+        $data = $task->run($userId);
+
+        return new JsonResponse($data);
     }
 }

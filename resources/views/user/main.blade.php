@@ -23,7 +23,7 @@
 
     @yield('stylesheets')
 </head>
-<body>
+<body data-uid="{{ Auth::user()->id }}">
     <section id="container">
         @include('user.inc.header')
 
@@ -36,13 +36,24 @@
         @include('user.inc.footer')
     </section>
 
-    <script src="{{ asset('lib/jquery-slim.min.js') }}"></script>
+    <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/popper.min.js') }}"></script>
     <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script class="include" type="text/javascript" src="{{ asset('lib/jquery.dcjqaccordion.2.7.js') }}"></script>
     <script src="{{ asset('lib/holder.min.js') }}"></script>
     <script src="{{ asset('lib/jquery.scrollTo.min.js') }}"></script>
     <script src="{{ asset('lib/jquery.nicescroll.js') }}" type="text/javascript"></script>
     <script src="{{ asset('lib/common-scripts.js') }}"></script>
+    <script>
+        $(function () {
+            $.ajaxSetup({
+                headers : {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        })
+    </script>
+
     @yield('scripts')
 </body>
 </html>

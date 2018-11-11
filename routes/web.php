@@ -24,6 +24,8 @@ Route::get('/profile', 'HomeController@profile')->name('profile');
 
 Route::get('transactions/checkout', 'TransactionController@checkout');
 
+Route::get('transfers/search-users', 'TransferController@getUserByIdAndEmail');
+Route::get('transfers/users/data', 'TransferController@getData');
 Route::resource('transfers', 'TransferController');
 Route::resource('transactions', 'TransactionController');
 Route::resource('applications', 'ApplicationController');

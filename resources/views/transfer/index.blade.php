@@ -2,21 +2,40 @@
 
 @section('title', ' - Transfer')
 
+@section('stylesheets')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/transfer.css') }}">
+@endsection
+
 @section('main-content')
     <section class="wrapper">
         <div class="row mt">
             <h1 class="centered">TRANSFER</h1>
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <h4 class="centered">Send money to another BWallet account.</h4>
-                <form class="form-login" action="index.html">
+                <form class="form-transfer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div id="receiver-name" class="alert alert-success hide">
+                                Receiver name : <b id="receiver">Tiogo eric Cabrel</b>
+                            </div>
+                            <div id="receiver-unknown" class="alert alert-danger hide">
+                                Receiver not found !
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="login-wrap">
-                        <input type="text" class="form-control" placeholder="Email receiver" autofocus>
+                        <input type="text" class="form-control" id="receiver-id" required placeholder="Receiver ID">
+                        <br/>
+                        <input type="text" class="form-control" id="receiver-email" required placeholder="Email receiver" autofocus>
                         <br>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <button class="btn btn-theme btn-block" id="btn-check-receiver">Check</button>
+                        <hr>
+                        <input type="number" class="form-control" id="amount" required placeholder="Amount (e.g. XAF 11500)" min="0" max="{{ Auth::user()->amount }}" step="500" value="{{ Auth::user()->amount > 500 ? 500 : Auth::user()->amount }}"/>
                         <br>
-                        <input type="text" class="form-control" placeholder="Amount (e.g. XAF 11500)">
-                        <br>
-                        <button class="btn btn-theme btn-block" href="index.html" type="submit">TRANSFER</button>
+                        <button class="btn btn-theme btn-block" disabled="disabled" id="btn-transfer" data-amount="{{ Auth::user()->amount }}">
+                            TRANSFER
+                        </button>
                         <hr>
                     </div>
                 </form>
@@ -94,4 +113,8 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('js/transfer.js') }}"></script>
 @endsection
