@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Application;
+use App\Task\CreateTransactionTask;
 use App\Task\ExternalApplicationTask;
+use App\Task\GetCinePaySignatureTask;
+use App\Task\GetPaymentStatusTask;
+use App\Task\RedirectToPaymentSiteTask;
 use App\Task\TransferMoneyTask;
 use App\Transaction;
 use App\Transfer;
 use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
@@ -40,11 +46,39 @@ class TransactionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $amount = $request->get('amount');
+        $type = $request->get('type');
+
+        $createTransactiontask = new CreateTransactionTask();
+        /** @var Transaction $transaction */
+        $transaction = $createTransactiontask->run($type, Auth::user()->id, $amount);
+
+        $getSignatureTask = new GetCinePaySignatureTask();
+        $result = $getSignatureTask->run($transaction);
+
+        if($result['code'] === 400 || $result['signature'] === null) {
+            $message = $result['message'];
+            try {
+                $transaction->delete();
+            } catch (\Exception $e) {
+                $message = $e->getMessage();
+            }
+
+            return Redirect::route('transactions.create')->with('error', $message)->with('amount', $amount);
+        } else {
+            $transaction->update(['signature' => $result['signature']]);
+
+            $securePayTask = new RedirectToPaymentSiteTask();
+            $url = $securePayTask->run($transaction);
+
+            Log::info($url);
+
+            return redirect()->away($url);
+        }
     }
 
     /**
@@ -167,5 +201,66 @@ class TransactionController extends Controller
                 return redirect()->away($successUrl);
             }
         }
+    }
+
+    /**
+     * Transaction Notification URL
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response | JsonResponse
+     */
+    public function notify(Request $request)
+    {
+        $transaction_code = $request->get('cpm_trans_id');
+        $payment_method = $request->get('payment_method');
+        $cel_phone_num = $request->get('cel_phone_num');
+        $cpm_phone_prefixe = $request->get('cpm_phone_prefixe');
+
+        /** @var Transaction $transaction */
+        $transaction = Transaction::where('code', $transaction_code)->first();
+
+        if(!is_null($transaction)) {
+            $now = new \DateTime();
+            $transaction->update([
+                'payment_method'    => $payment_method,
+                'cel_phone_num'     => $cel_phone_num,
+                'cpm_phone_prefixe' => $cpm_phone_prefixe,
+                'updated_at'        => $now,
+            ]);
+
+            //Get Status
+            $getPaymentStatustask = new GetPaymentStatusTask();
+            $status = $getPaymentStatustask->run($transaction);
+
+            $transaction->update(['status' => $status]);
+
+            //TODO Send email to the user
+
+            return new JsonResponse(['message' => 'OK', 'PAYMENT_STATUS' => $status]);
+        } else {
+            return new JsonResponse(['message' => 'Transaction not found !']);
+        }
+    }
+
+    /**
+     * Transaction Success URL
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response | RedirectResponse
+     */
+    public function success(Request $request)
+    {
+        return Redirect::route('transactions.create')->with('success', '');
+    }
+
+    /**
+     * Transaction Cancel URL
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response | RedirectResponse
+     */
+    public function cancel(Request $request)
+    {
+        return Redirect::route('transactions.create')->with('failed', '');
     }
 }
