@@ -15,7 +15,7 @@ var BwtTransfer = function()
     };
 
     this.endpoints = {
-        searchUsers: "transfers/search-users",
+        searchUsers: "/bewallet/public/transfers/search-users",
         register: "agencies/register"
     };
 
@@ -24,10 +24,29 @@ var BwtTransfer = function()
 
 var loadTransfers = function(userId) {
     $.ajax({
-        url: '/transfers/users/data?user_id=' + userId,
+        url: '/bewallet/public/transfers/users/data?user_id=' + userId,
         type: 'get',
         dataType: 'json',
         success: function (response) {
+
+          $('#total').text(response.total);
+          $('#sent').text(response.sent);
+          $('#received').text(response.received);
+
+          $("#table_transfer").dataTable({
+            "aaSorting": [[0, "asc"]],
+            "sPaginationType": "full_numbers",
+            "bProcessing": true,
+            "bServerSide": true,
+            "sAjaxSource": "/bewallet/public/transfers/users/data?user_id=" + userId,
+            "aoColumns": [
+                {"sTitle": "Code", "data": "code"},
+                {"sTitle": "Amount", "data": "amount"},
+                {"sTitle": "Currency", "data": "currency"},
+                {"sTitle": "Date", "data": "date"},
+                {"sTitle": "Type", "data": "type"},
+                {"sTitle": "Sender", "data": "sender"},
+                {"sTitle": "Receiver", "data": "receiver"}]});
             console.log(response);
         },
         error: function (a, b, c) {
@@ -58,7 +77,7 @@ $(function(){
         bwtt.canTransfer = false;
 
         $.ajax({
-            url: '/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
+            url: '/bewallet/public/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
             type: 'get',
             // data: {mpid: mpid, data: products},
             dataType: 'json',
@@ -102,7 +121,7 @@ $(function(){
            bwtt.elts.form.btnTransfer.attr('disabled', true);
 
            $.ajax({
-               url: '/transfers',
+               url: '/bewallet/public/bewallet/public/transfers',
                type: 'post',
                data: {id: receiverId, email: receiverEmail, amount: amount},
                dataType: 'json',
