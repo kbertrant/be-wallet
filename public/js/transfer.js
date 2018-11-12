@@ -15,7 +15,7 @@ var BwtTransfer = function()
     };
 
     this.endpoints = {
-        searchUsers: "/transfers/search-users",
+        searchUsers: "/bewallet/public/transfers/search-users",
         register: "agencies/register"
     };
 
@@ -24,7 +24,7 @@ var BwtTransfer = function()
 
 var loadTransfers = function(userId) {
     $.ajax({
-        url: '/transfers/users/data?user_id=' + userId,
+        url: '/bewallet/public/transfers/users/data?user_id=' + userId,
         type: 'get',
         dataType: 'json',
         success: function (response) {
@@ -38,7 +38,7 @@ var loadTransfers = function(userId) {
             "sPaginationType": "full_numbers",
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "/transfers/users/data?user_id=" + userId,
+            "sAjaxSource": "/bewallet/public/transfers/users/data?user_id=" + userId,
             "aoColumns": [
                 {"sTitle": "Code", "data": "code"},
                 {"sTitle": "Amount", "data": "amount"},
@@ -77,7 +77,7 @@ $(function(){
         bwtt.canTransfer = false;
 
         $.ajax({
-            url: '/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
+            url: '/bewallet/public/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
             type: 'get',
             // data: {mpid: mpid, data: products},
             dataType: 'json',
@@ -121,7 +121,7 @@ $(function(){
            bwtt.elts.form.btnTransfer.attr('disabled', true);
 
            $.ajax({
-               url: '/bewallet/public/transfers',
+               url: '/bewallet/public/bewallet/public/transfers',
                type: 'post',
                data: {id: receiverId, email: receiverEmail, amount: amount},
                dataType: 'json',
