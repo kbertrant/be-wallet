@@ -84,6 +84,10 @@
     <script src="{{ asset('lib/jquery.scrollTo.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('lib/jquery.nicescroll.js') }}" type="text/javascript"></script>
     <!--common script for all pages-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
     <script type="text/javascript" src="{{ asset('lib/common-scripts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/transfer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('datatables/datatables.min.js') }}"></script>

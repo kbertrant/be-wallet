@@ -15,7 +15,7 @@ var BwtTransfer = function()
     };
 
     this.endpoints = {
-        searchUsers: "/bewallet/public/transfers/search-users",
+        searchUsers: "/transfers/search-users",
         register: "agencies/register"
     };
 
@@ -121,7 +121,7 @@ $(function(){
            bwtt.elts.form.btnTransfer.attr('disabled', true);
 
            $.ajax({
-               url: '/bewallet/public/bewallet/public/transfers',
+               url: '/bewallet/public/transfers',
                type: 'post',
                data: {id: receiverId, email: receiverEmail, amount: amount},
                dataType: 'json',
