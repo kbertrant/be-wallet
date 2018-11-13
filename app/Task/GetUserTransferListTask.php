@@ -3,8 +3,6 @@
 namespace App\Task;
 
 use App\Transfer;
-use App\Utils\Utils;
-use Illuminate\Support\Facades\DB;
 
 class GetUserTransferListTask
 {
@@ -53,21 +51,15 @@ class GetUserTransferListTask
              ];
         }
 
+        $total = $sent + $received;
+
         $result['received'] = $received;
         $result['sent'] = $sent;
-        $result['total'] = $sent + $received;
+        $result['total'] = $total;
+        $result['draw'] = 1;
+        $result['recordsTotal'] = $total;
+        $result['recordsFiltered'] = $total;
 
         return $result;
-    }
-
-    private function generateTransferCode() {
-        /** @var Transfer $lastTransfer */
-        $lastTransfer = Transfer::orderBy('id', 'desc')->first();
-
-        $maxId = is_null($lastTransfer) ? 1 : $lastTransfer->id + 1;
-
-        $year = (new \DateTime())->format('y');
-
-        return "BWT".$year.'TRF'.Utils::FormatId($maxId);
     }
 }

@@ -62,6 +62,6 @@ class TransferMoneyTask
 
         $year = (new \DateTime())->format('y');
 
-        return "BWT".$year.'TRF'.Utils::FormatId($maxId);
+        return "BWT".$year.'TRF'.$maxId;
     }
 }

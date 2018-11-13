@@ -29,4 +29,20 @@ class Utils
 
         return $str."".$maxId;
     }
+
+    /**
+     * @param $dateSql
+     *
+     * @return string
+     */
+    public static function DateToFrenchOrSQL($dateSql)
+    {
+        if(is_null($dateSql)) {
+            return null;
+        }
+
+        $tab = explode('-', $dateSql);
+
+        return $tab[2].'-'.$tab[1].'-'.$tab[0];
+    }
 }
