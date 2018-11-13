@@ -7,6 +7,7 @@ use App\Task\CreateTransactionTask;
 use App\Task\ExternalApplicationTask;
 use App\Task\GetCinePaySignatureTask;
 use App\Task\GetPaymentStatusTask;
+use App\Task\GetUserTransactionListTask;
 use App\Task\RedirectToPaymentSiteTask;
 use App\Task\TransferMoneyTask;
 use App\Transaction;
@@ -63,7 +64,7 @@ class TransactionController extends Controller
         if($result['code'] === 400 || $result['signature'] === null) {
             $message = $result['message'];
             try {
-                $transaction->delete();
+                // $transaction->delete();
             } catch (\Exception $e) {
                 $message = $e->getMessage();
             }
@@ -262,5 +263,22 @@ class TransactionController extends Controller
     public function cancel(Request $request)
     {
         return Redirect::route('transactions.create')->with('failed', '');
+    }
+
+    /**
+     * Get transactions list of the user !
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getData(Request $request)
+    {
+        $userId = $request->get('user_id');
+
+        $task = new GetUserTransactionListTask();
+
+        $data = $task->run($userId);
+
+        return new JsonResponse($data);
     }
 }

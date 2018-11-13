@@ -4,7 +4,7 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/table-responsive.css') }}">
-               <link rel="stylesheet" type="text/css" href="{{ asset('datatables/datatables.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('lib/datatables/datatables.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/transfer.css') }}">
 @endsection
 
@@ -78,13 +78,6 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script class="include" type="text/javascript" src="{{ asset('lib/jquery.dcjqaccordion.2.7.js') }}"></script>
-    <script src="{{ asset('lib/jquery.scrollTo.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('lib/jquery.nicescroll.js') }}" type="text/javascript"></script>
-    <!--common script for all pages-->
-    <script type="text/javascript" src="{{ asset('lib/common-scripts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('lib/datatables/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/transfer.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('datatables/datatables.min.js') }}"></script>
 @endsection

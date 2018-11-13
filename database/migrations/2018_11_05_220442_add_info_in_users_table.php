@@ -25,6 +25,7 @@ class AddInfoInUsersTable extends Migration
             $table->string('email_token')->nullable()->after('address');
             $table->boolean('confirmed')->default(false)->after('email_token');
             $table->boolean('timezone')->nullable()->after('confirmed');
+            $table->boolean('avatar')->nullable()->after('timezone');
         });
     }
 

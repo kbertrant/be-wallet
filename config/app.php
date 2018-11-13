@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Webpatser\Countries\CountriesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -159,7 +160,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -208,7 +208,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Countries' => Webpatser\Countries\CountriesFacade::class,
     ],
 
 ];

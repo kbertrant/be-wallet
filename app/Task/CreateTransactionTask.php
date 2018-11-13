@@ -45,6 +45,6 @@ class CreateTransactionTask
 
         $year = (new \DateTime())->format('y');
 
-        return "BWT".$year.'TSC'.Utils::FormatId($maxId);
+        return "BWT".$year.'TSC'.$maxId;
     }
 }

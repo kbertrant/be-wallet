@@ -15,7 +15,7 @@ var BwtTransfer = function()
     };
 
     this.endpoints = {
-        searchUsers: "/bewallet/public/transfers/search-users",
+        searchUsers: "/transfers/search-users",
         register: "agencies/register"
     };
 
@@ -23,8 +23,25 @@ var BwtTransfer = function()
 };
 
 var loadTransfers = function(userId) {
+    $("#table_transfer").dataTable({
+        "aaSorting": [[0, "asc"]],
+        "sPaginationType": "full_numbers",
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "/transfers/users/data?user_id=" + userId,
+        "aoColumns": [
+            {"sTitle": "Code", "data": "code"},
+            {"sTitle": "Amount", "data": "amount"},
+            {"sTitle": "Currency", "data": "currency"},
+            {"sTitle": "Date", "data": "date"},
+            {"sTitle": "Type", "data": "type"},
+            {"sTitle": "Sender", "data": "sender"},
+            {"sTitle": "Receiver", "data": "receiver"}
+        ]
+    });
+
     $.ajax({
-        url: '/bewallet/public/transfers/users/data?user_id=' + userId,
+        url: '/transfers/users/data?user_id=' + userId,
         type: 'get',
         dataType: 'json',
         success: function (response) {
@@ -33,21 +50,7 @@ var loadTransfers = function(userId) {
           $('#sent').text(response.sent);
           $('#received').text(response.received);
 
-          $("#table_transfer").dataTable({
-            "aaSorting": [[0, "asc"]],
-            "sPaginationType": "full_numbers",
-            "bProcessing": true,
-            "bServerSide": true,
-            "sAjaxSource": "/bewallet/public/transfers/users/data?user_id=" + userId,
-            "aoColumns": [
-                {"sTitle": "Code", "data": "code"},
-                {"sTitle": "Amount", "data": "amount"},
-                {"sTitle": "Currency", "data": "currency"},
-                {"sTitle": "Date", "data": "date"},
-                {"sTitle": "Type", "data": "type"},
-                {"sTitle": "Sender", "data": "sender"},
-                {"sTitle": "Receiver", "data": "receiver"}]});
-            console.log(response);
+          //console.log(response);
         },
         error: function (a, b, c) {
             alert("Error");
@@ -67,7 +70,7 @@ $(function(){
            receiverId = bwtt.elts.form.receiverId.val();
 
        if(receiverEmail.length === 0 || receiverId.length === 0) {
-           alert('FIll the receiver id and receiver email !');
+           alert('Fill the receiver id and receiver email !');
            return;
        }
 
@@ -77,12 +80,11 @@ $(function(){
         bwtt.canTransfer = false;
 
         $.ajax({
-            url: '/bewallet/public/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
+            url: '/transfers/search-users?id='+receiverId+'&email='+receiverEmail,
             type: 'get',
-            // data: {mpid: mpid, data: products},
             dataType: 'json',
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if(response.code === 200) {
                     bwtt.elts.spanReceiver.text(response.message);
                     bwtt.elts.divReceiverName.removeClass('hide');
@@ -121,12 +123,12 @@ $(function(){
            bwtt.elts.form.btnTransfer.attr('disabled', true);
 
            $.ajax({
-               url: '/bewallet/public/bewallet/public/transfers',
+               url: '/transfers',
                type: 'post',
                data: {id: receiverId, email: receiverEmail, amount: amount},
                dataType: 'json',
                success: function (response) {
-                   console.log(response);
+                   // console.log(response);
                    if(response.code === 200) {
                        bwtt.elts.spanReceiver.text(response.message);
                        bwtt.elts.divReceiverName.removeClass('hide');
