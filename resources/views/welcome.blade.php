@@ -17,7 +17,7 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="first-slide" src="{{ asset('img/carousel/money-transfer-.jpg') }}" alt="First slide">
+                    <img class="first-slide" src="{{ asset('img/carousel/carousel_bewallet1.png') }}" alt="First slide">
                     <div class="container">
                         <div class="carousel-caption text-left">
                             <h1>TRANSFER MONEY</h1>
@@ -106,7 +106,7 @@
                     <p class="lead">Enjoy easy access to a range of the latest merchant offers, deals and bonuses. Updated every month.</p>
                 </div>
                 <div class="col-md-5">
-                    <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/carousel/online_payment.jpg') }}" alt="Generic placeholder image">
+                    <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/carousel/offers_bewallet.png') }}" alt="Generic placeholder image">
                 </div>
             </div>
 
@@ -118,7 +118,7 @@
                     <p class="lead">Our fast, easy to use and secure app lets you access your account wherever you need it.</p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/carousel/disponible.png') }}" alt="Generic placeholder image">
+                    <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/carousel/hour_bewallet.png') }}" alt="Generic placeholder image">
                 </div>
             </div>
 
