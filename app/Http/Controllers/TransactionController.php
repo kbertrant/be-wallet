@@ -233,8 +233,6 @@ class TransactionController extends Controller
             $getPaymentStatustask = new GetPaymentStatusTask();
             $status = $getPaymentStatustask->run($transaction);
 
-            $transaction->update(['status' => $status]);
-
             //TODO Send email to the user
 
             return new JsonResponse(['message' => 'OK', 'PAYMENT_STATUS' => $status]);

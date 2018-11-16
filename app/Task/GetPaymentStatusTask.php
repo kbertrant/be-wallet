@@ -3,6 +3,7 @@
 namespace App\Task;
 
 use App\Transaction;
+use App\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Log;
@@ -20,6 +21,10 @@ class GetPaymentStatusTask
      * @return string
      */
     public function run($transaction) {
+        if($transaction->status !== Transaction::PENDING) {
+            return $transaction->status;
+        }
+
         $signature = null;
         $siteId = env('CINEPAY_SITE_ID');
         $apiKey = env('CINEPAY_API_KEY');
@@ -46,9 +51,24 @@ class GetPaymentStatusTask
             $data = \GuzzleHttp\json_decode($content);
             $result = $data->transaction;
 
-            if($result->cpm_result === '00' && $result->cpm_amount === $transaction->amount && $result->signature === $transaction->signature) {
+            if(
+                $result->cpm_result === '00' &&
+                $result->cpm_amount === $transaction->amount &&
+                $result->signature === $transaction->signature
+            ) {
+                $transaction->update(['status' => Transaction::SUCCESS]);
+
+                /** @var User $user */
+                $user = User::where('id', $transaction->user_id)->first();
+                if(!is_null($user)) {
+                    $user->update([
+                        'amount' => $user->amount + $transaction->amount
+                    ]);
+                }
+
                 return Transaction::SUCCESS;
             } else {
+                $transaction->update(['status' => Transaction::FAILED]);
                 return Transaction::FAILED;
             }
 
