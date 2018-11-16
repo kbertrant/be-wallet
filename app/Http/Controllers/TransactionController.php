@@ -76,7 +76,7 @@ class TransactionController extends Controller
             $securePayTask = new RedirectToPaymentSiteTask();
             $url = $securePayTask->run($transaction);
 
-            Log::info($url);
+            // Log::info($url);
 
             return redirect()->away($url);
         }

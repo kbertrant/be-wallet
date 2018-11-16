@@ -20,12 +20,8 @@ class RedirectToPaymentSiteTask
         $result = ['code' => 200, 'message' => '', 'signature' => null];
 
         $signature = null;
-        $siteId = env('CINEPAY_DEPOSIT_SITE_ID');
-        $apiKey = env('CINEPAY_DEPOSIT_API_KEY');
-
-        if($transaction->type === Transaction::WITHDRAW) {
-            $apiKey = env('CINEPAY_WITHDRAW_API_KEY');
-        }
+        $siteId = env('CINEPAY_SITE_ID');
+        $apiKey = env('CINEPAY_API_KEY');
 
         $baseUrl= 'https://secure.cinetpay.com?';
         $appUrl = env('APP_URL').'/transactions';
@@ -34,11 +30,11 @@ class RedirectToPaymentSiteTask
             "cpm_amount"            => $transaction->amount,
             "cpm_currency"          => "CFA",
             "cpm_site_id"           => $siteId,
-            "cpm_trans_id"          => "depid",
+            "cpm_trans_id"          => $transaction->code,
             "cpm_trans_date"        => $transaction->created_at->format('Y-m-d h:i:s'),
             "cpm_payment_config"    => "SINGLE",
             "cpm_page_action"       => "PAYMENT",
-            "cpm_version"           => "v1",
+            "cpm_version"           => "V1",
             "cpm_language"          => "fr",
             "cpm_designation"       => $transaction->type,
             "cpm_custom"            => $transaction->code."|".$transaction->amount,
@@ -59,5 +55,4 @@ class RedirectToPaymentSiteTask
 
         return $baseUrl.$queryParams;
     }
-
 }

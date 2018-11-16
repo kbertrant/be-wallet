@@ -27,9 +27,9 @@ class GetCinePaySignatureTask
         $apiKey = env('CINEPAY_API_KEY');
 
         $options = [];
-        $headers = ['Accept' =>  'application/json'];
+        $headers = ['Content-Type' =>  'application/x-www-form-urlencoded'];
 
-        $options['json'] = [
+        $options['form_params'] = [
             "cpm_amount"            => $transaction->amount,
             "cpm_currency"          => "CFA",
             "cpm_site_id"           => $siteId,
@@ -42,11 +42,9 @@ class GetCinePaySignatureTask
             "cpm_designation"       => $transaction->type,
             "cpm_custom"            => $transaction->code."|".$transaction->amount,
             "apikey"                => $apiKey,
-            "cel_phone_num"         => "03030981",
-            "cpm_phone_prefixe"     => "225"
         ];
 
-        Log::info(print_r($options['json'], true));
+        // Log::info(print_r($options['form_params'], true));
         $options['headers'] = $headers;
 
         try
@@ -57,7 +55,7 @@ class GetCinePaySignatureTask
 
             if($response->getStatusCode() === 200){
                 $content = $response->getBody()->getContents();
-                Log::info(print_r($content, true));
+                // Log::info(print_r($content, true));
                 $data = \GuzzleHttp\json_decode($content);
 
                 if(isset($data->status)) {

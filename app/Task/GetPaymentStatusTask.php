@@ -25,9 +25,9 @@ class GetPaymentStatusTask
         $apiKey = env('CINEPAY_API_KEY');
 
         $options = [];
-        $headers = ['Accept' =>  'application/json'];
+        $headers = ['Content-Type' =>  'application/x-www-form-urlencoded'];
 
-        $options['json'] = [
+        $options['form_params'] = [
             "cpm_site_id"           => $siteId,
             "cpm_trans_id"          => $transaction->code,
             "apikey"                => $apiKey
@@ -42,7 +42,7 @@ class GetPaymentStatusTask
             $response = $client->request('POST', 'https://api.cinetpay.com/v1/?method=checkPayStatus');
 
             $content = $response->getBody()->getContents();
-            Log::info(print_r($content, true));
+            // Log::info(print_r($content, true));
             $data = \GuzzleHttp\json_decode($content);
             $result = $data->transaction;
 
