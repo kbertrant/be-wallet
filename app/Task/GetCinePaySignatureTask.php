@@ -41,7 +41,9 @@ class GetCinePaySignatureTask
             "cpm_language"          => "fr",
             "cpm_designation"       => $transaction->type,
             "cpm_custom"            => $transaction->code."|".$transaction->amount,
-            "apikey"                => $apiKey
+            "apikey"                => $apiKey,
+            "cel_phone_num"         => "03030981",
+            "cpm_phone_prefixe"     => "225"
         ];
 
         Log::info(print_r($options['json'], true));
