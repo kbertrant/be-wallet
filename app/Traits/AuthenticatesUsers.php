@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 trait AuthenticatesUsers
@@ -92,8 +93,9 @@ trait AuthenticatesUsers
      */
     protected function attemptLogin(Request $request)
     {
+        $params = array_merge($request->only($this->username(), 'password'), ['confirmed' => 1]);
         return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
+            $params, $request->filled('remember')
         );
     }
 

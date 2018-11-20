@@ -18,6 +18,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            if(!Auth::user()->confirmed){
+                return redirect('/login')->with('account_error', 'Your account isn\'t confirmed ! You can login');
+            }
             return redirect('/home');
         }
 
