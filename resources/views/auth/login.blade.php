@@ -25,17 +25,23 @@
         <div class="container">
             <form class="form-login" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 @csrf
+<<<<<<< HEAD
                 <h2 class="form-login-heading">CONNEXION</h2>
+=======
+                <h2 class="form-login-heading">Sign in now</h2>
+                @if(session('account_error'))
+                    <div class="alert alert-danger">{{ session('account-error') }}</div>
+                @endif
+                @if ($errors->has('email'))
+                    <div class="alert alert-danger">
+                            <strong>{{ $errors->first('email') }}</strong>
+                    </div>
+                @endif
+>>>>>>> origin/master
                 <div class="login-wrap">
                     <input id="email" type="email" placeholder="Ex: username@yahoo.com"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                            value="{{ old('email') }}" required autofocus>
-
-                    @if ($errors->has('email'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
                     <br>
                     <input id="password" type="password" placeholder="Mot de passe"
                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
