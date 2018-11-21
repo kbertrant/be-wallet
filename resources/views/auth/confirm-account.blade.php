@@ -26,7 +26,7 @@
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 mb">
                 <div class="white-panel pn">
                     <div class="white-header">
-                        <h5>ACCOUNT CONFIRMATION</h5>
+                        <h5>COMPTE CONFIRMATION</h5>
                     </div>
                     <div class="row">
                         @if($valid == 1)
@@ -38,7 +38,7 @@
                                 @else
                                     <p class="message" id="notify-login">
                                         <br/>
-                                        <a class="btn btn-success" href="{{ route('login') }}">Login to your account</a>
+                                        <a class="btn btn-success" href="{{ route('login') }}">Coonecter vous avec votre compte</a>
                                     </p>
                                 @endif
                             </div>
@@ -46,7 +46,7 @@
                             <div class="col-sm-12 col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 account-msg-notice">
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 <br/>
-                                <a class="btn btn-success" href="/">Go to home</a>
+                                <a class="btn btn-success" href="/">ACCUEIL</a>
                             </div>
                         @endif
                     </div>

@@ -25,7 +25,7 @@
         <div class="container">
             <form class="form-login" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 @csrf
-                <h2 class="form-login-heading">Sign in now</h2>
+                <h2 class="form-login-heading">CONNEXION</h2>
                 <div class="login-wrap">
                     <input id="email" type="email" placeholder="Ex: username@yahoo.com"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
@@ -37,7 +37,7 @@
                         </span>
                     @endif
                     <br>
-                    <input id="password" type="password"
+                    <input id="password" type="password" placeholder="Mot de passe"
                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                     @if ($errors->has('password'))
@@ -48,22 +48,22 @@
                     <label class="checkbox">
                         <input class="form-check-input" type="checkbox" name="remember"
                                id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        {{ __('Remember me') }}
+                        {{ __('Se souvenir de moi') }}
                     </label>
                     <span class="pull-right forgot-password">
                         <a data-toggle="modal" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                            {{ __('Mot de passe oublié ?') }}
                         </a>
                     </span>
                     <button class="btn btn-theme btn-block" href="index.html" type="submit">
-                        <i class="fa fa-lock"></i> {{ __('Login') }}
+                        <i class="fa fa-lock"></i> {{ __('CONNEXION') }}
                     </button>
                     <hr>
 
                     <div class="registration">
-                        Don't have an account yet?<br/>
+                        Pas encore de compte ?<br/>
                         <a class="" href="{{ route('register') }}">
-                            Create an account
+                            Creer un compte ici
                         </a>
                     </div>
                 </div>

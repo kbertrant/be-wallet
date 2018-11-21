@@ -17,25 +17,31 @@
             <li class="mt">
                 <a {!! (Request::is('home') ? 'class="active"' : '') !!} href="{{ route('home') }}">
                     <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
+                    <span>TABLEAU DE BORD</span>
                 </a>
             </li>
             <li class="mt">
                 <a {!! ((Request::is('transactions') || Request::is('transactions/create')) ? 'class="active"' : '') !!} href="{{ route('transactions.index') }}">
-                    <i class="fa fa-tasks"></i>
-                    <span>DEPOSIT</span>
+                    <i class="fa fa-google-wallet"></i>
+                    <span>DEPOT</span>
                 </a>
             </li>
-            <li class="mt hide">
-                <a class="" href="">
-                    <i class="fa fa-angle-up"></i>
-                    <span>WITHDRAW</span>
+            <li class="mt">
+                <a {!! ((Request::is('transactions') || Request::is('transactions/create')) ? 'class="active"' : '') !!} href="{{ route('transactions.pay_service') }}">
+                    <i class="fa fa-tasks"></i>
+                    <span>PAYER UN SERVICE</span>
+                </a>
+            </li>
+            <li class="mt">
+                <a {!! ((Request::is('transactions') || Request::is('transactions/create')) ? 'class="active"' : '') !!} href="{{ route('transactions.withdraw') }}">
+                    <i class="fa fa-money"></i>
+                    <span>RETRAIT</span>
                 </a>
             </li>
             <li class="mt">
                 <a {!! (Request::is('transfers') ? 'class="active"' : '') !!} href="{{ route('transfers.index') }}">
                     <i class="fa fa-envelope"></i>
-                    <span>TRANSFER</span>
+                    <span>TRANSFERT</span>
                 </a>
             </li>
 

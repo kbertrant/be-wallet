@@ -31,6 +31,8 @@ Route::post('transactions/notify', 'TransactionController@notify')->name('transa
 Route::get('transactions/success', 'TransactionController@success')->name('transactions.success');
 Route::get('transactions/cancel', 'TransactionController@cancel')->name('transactions.cancel');
 Route::get('transactions/users/data', 'TransactionController@getData');
+Route::get('transactions/withdraw', 'TransactionController@withdraw')->name('transactions.withdraw');
+Route::get('transactions/pay_service', 'TransactionController@pay_service')->name('transactions.pay_service');
 Route::resource('transactions', 'TransactionController');
 
 Route::get('transfers/search-users', 'TransferController@getUserByIdAndEmail');

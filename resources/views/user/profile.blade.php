@@ -1,6 +1,6 @@
 @extends('user.main')
 
-@section('title', ' - User profile')
+@section('title', ' - Profile')
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/table-responsive.css') }}">
@@ -16,7 +16,7 @@
         <div class="row mt">
             <div class="col-lg-12">
                 @if (session('success'))
-                    <div class="alert alert-success text-center">Application updated successfully</div>
+                    <div class="alert alert-success text-center">Application modifiée avec succès</div>
                 @elseif(session('password-success'))
                     <div class="alert alert-success text-center">{{ session('password-success') }}</div>
                 @elseif(session('update-success'))
@@ -34,22 +34,22 @@
                     <div class="col-md-4 profile-text mt mb centered">
                         <div class="right-divider hidden-sm hidden-xs">
                             <h4>{{ Auth::user()->name }}</h4>
-                            <h6>USER NAME</h6>
+                            <h6>NOM UTILISATEUR</h6>
                             <h4>{{ Auth::user()->identifier }}</h4>
-                            <h6>IDENTIFIER</h6>
+                            <h6>IDENTIFIANT</h6>
                             <h4>XAF {{ Auth::user()->amount }}</h4>
-                            <h6>BALANCE AVAILABLE</h6>
+                            <h6>SOLDE DISPONIBLE</h6>
                         </div>
                     </div>
                     <!-- /col-md-4 -->
                     <div class="col-md-4 profile-text mt mb centered">
                         <div class="right-divider hidden-sm hidden-xs">
                             <h4>{{ Auth::user()->email }}</h4>
-                            <h6>ADDRESS EMAIL</h6>
+                            <h6>ADRESSE EMAIL</h6>
                             <h4>{{ !is_null(Auth::user()->city) ? Auth::user()->city : 'N/A' }}</h4>
-                            <h6>CITY</h6>
+                            <h6>VILLE</h6>
                             <h4>{{ !is_null(Auth::user()->phone) ? Auth::user()->phone : 'N/A' }}</h4>
-                            <h6>PHONE NUMBER</h6>
+                            <h6>TELEPHONE</h6>
                         </div>
                     </div>
                     <!-- /col-md-4 -->
@@ -73,13 +73,13 @@
                     <div class="panel-heading">
                         <ul class="nav nav-tabs nav-justified">
                             <li class="active">
-                                <a data-toggle="tab" href="#overview">Overview</a>
+                                <a data-toggle="tab" href="#overview">VUE GENERALE</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#edit">Edit Profile</a>
+                                <a data-toggle="tab" href="#edit">MODIFIER PROFILE</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#application">My Application</a>
+                                <a data-toggle="tab" href="#application">MON APPLICATION</a>
                             </li>
                         </ul>
                     </div>
@@ -87,7 +87,7 @@
                     <div class="panel-body">
                         <div class="tab-content">
                             <div id="overview" class="tab-pane active" style="min-height: 300px">
-                                <h4 class="centered">TRANSACTIONS LIST</h4>
+                                <h4 class="centered">LISTE TRANSACTIONS </h4>
                                 <table id="table_transactions" class="table table-bordered table-striped table-condensed">
 
                                 </table>
@@ -96,34 +96,34 @@
                             <div id="edit" class="tab-pane">
                                 <div class="row">
                                     <div class="col-lg-8 col-lg-offset-2 detailed">
-                                        <h4 class="mb">Personal Information</h4>
+                                        <h4 class="mb">Informations personnelles</h4>
                                         <form role="form" enctype="multipart/form-data" method="post" action="{{ route('users.update') }}" class="form-horizontal mb">
                                             @csrf
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="gender">Gender :</label>
+                                                <label class="col-lg-2 control-label" for="gender">Genre :</label>
                                                 <div class="col-lg-6">
                                                     <select name="gender" id="gender" style="width: 100%" class="select2">
                                                         <option value=""></option>
-                                                        <option value="M" @if(Auth::user()->gender === 'M') selected @endif>Male</option>
-                                                        <option value="F" @if(Auth::user()->gender === 'F') selected @endif>Female</option>
+                                                        <option value="M" @if(Auth::user()->gender === 'M') selected @endif>Masculin</option>
+                                                        <option value="F" @if(Auth::user()->gender === 'F') selected @endif>Femelle</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="name">Name :</label>
+                                                <label class="col-lg-2 control-label" for="name">Nom :</label>
                                                 <div class="col-lg-6">
                                                     <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name  }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="birth">Date of birth :</label>
+                                                <label class="col-lg-2 control-label" for="birth">Date de naissance :</label>
                                                 <div class="col-lg-6">
                                                     <input type="text" name="birth" id="birth" class="form-control"  value="{{ $birth  }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="country">Country : </label>
+                                                <label class="col-lg-2 control-label" for="country">Pays : </label>
                                                 <div class="col-lg-6">
                                                     <select name="country" id="country" data-ctr="{{ Auth::user()->country }}" style="width: 100%" class="form-control select2">
                                                         <option value=""></option>
@@ -131,13 +131,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="city">City :</label>
+                                                <label class="col-lg-2 control-label" for="city">Ville :</label>
                                                 <div class="col-lg-6">
                                                     <input type="text" name="city" id="city" class="form-control" value="{{ Auth::user()->city  }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="address">Address : </label>
+                                                <label class="col-lg-2 control-label" for="address">Adresse : </label>
                                                 <div class="col-lg-6">
                                                     <input type="text" name="address" id="address" class="form-control" value="{{ Auth::user()->address  }}"/>
                                                 </div>
@@ -157,10 +157,10 @@
                                                         <div>
                                                             <span class="btn btn-theme02 btn-file">
                                                                 <span class="fileupload-new">
-                                                                    <i class="fa fa-paperclip"></i> Select image
+                                                                    <i class="fa fa-paperclip"></i> Choix image
                                                                 </span>
                                                                 <span class="fileupload-exists">
-                                                                    <i class="fa fa-undo"></i> Change
+                                                                    <i class="fa fa-undo"></i> Changer
                                                                 </span>
                                                                 <input type="file" class="default" name="avatar" id="avatar" />
                                                             </span>
@@ -170,34 +170,34 @@
                                             </div>
 
                                             <button class="btn btn-primary mb pull-right" type="submit">
-                                                <span class="fa fa-check"></span> Update
+                                                <span class="fa fa-check"></span> MODIFIER
                                             </button>
                                         </form>
                                         <br/>
                                         <br/>
-                                        <h4 class="mb">Change Password</h4>
+                                        <h4 class="mb">Changer mot de passe</h4>
                                         <form role="form" class="form-horizontal" method="post" action="{{ route('users.change.password') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="current-password">Current password :</label>
+                                                <label class="col-lg-2 control-label" for="current-password">Mot de passe initial :</label>
                                                 <div class="col-lg-6">
                                                     <input type="password" id="current-password" name="current-password" class="form-control"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="password">New password :</label>
+                                                <label class="col-lg-2 control-label" for="password">Nouveau mot de passe :</label>
                                                 <div class="col-lg-6">
                                                     <input type="password" name="password" id="password" class="form-control"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label" for="confirm-password">Confirm password :</label>
+                                                <label class="col-lg-2 control-label" for="confirm-password">Confirmation de mot de passe :</label>
                                                 <div class="col-lg-6">
                                                     <input type="password" name="confirm-password" id="confirm-password" class="form-control"/>
                                                 </div>
                                             </div>
                                             <button class="btn btn-primary mt mb pull-right" type="submit">
-                                                <span class="fa fa-check"></span> Change
+                                                <span class="fa fa-check"></span> Changer
                                             </button>
                                         </form>
                                     </div>

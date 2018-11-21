@@ -34,6 +34,27 @@ class TransactionController extends Controller
     }
 
     /**
+     * Show the form for creating a new withdraw.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function withdraw()
+    {
+        return view('transaction.withdraw');
+    }
+
+
+    /**
+     * Show the form for paying a new service.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pay_service()
+    {
+        return view('transaction.pay_service');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

@@ -11,9 +11,9 @@
 @section('main-content')
     <section class="wrapper">
         <div class="row mt">
-            <h1 class="centered">TRANSFER</h1>
+            <h1 class="centered">TRANSFERT</h1>
             <div class="col-lg-4 col-md-6 col-sm-12">
-                <h4 class="centered">Send money to another BWallet account.</h4>
+                <h4 class="centered">Envoi d'argent à un compte BeWallet.</h4>
                 <form class="form-transfer">
                     <div class="row">
                         <div class="col-xs-12">
@@ -21,7 +21,7 @@
                                 Receiver name : <b id="receiver">Tiogo eric Cabrel</b>
                             </div>
                             <div id="receiver-unknown" class="alert alert-danger hide">
-                                Receiver not found !
+                                Receveur introuvable !
                             </div>
                         </div>
                     </div>
@@ -31,44 +31,44 @@
                         <br/>
                         <input type="text" class="form-control" id="receiver-email" required placeholder="Email receiver" autofocus>
                         <br>
-                        <button class="btn btn-theme btn-block" id="btn-check-receiver">Check</button>
+                        <button class="btn btn-theme btn-block" id="btn-check-receiver">VERIFIER</button>
                         <hr>
                         <input type="number" class="form-control" id="amount" required placeholder="Amount (e.g. XAF 11500)" min="0" max="{{ Auth::user()->amount }}" step="500" value="{{ Auth::user()->amount > 500 ? 500 : Auth::user()->amount }}"/>
                         <br>
                         <button class="btn btn-theme btn-block" disabled="disabled" id="btn-transfer" data-amount="{{ Auth::user()->amount }}">
-                            TRANSFER
+                            TRANSFERER
                         </button>
                         <hr>
                     </div>
                 </form>
             </div>
             <div class="col-lg-8 col-md-6 col-sm-12">
-                <h4 class="centered">ACTIVITIES</h4>
+                <h4 class="centered">ACTIVITES</h4>
                 <div class="row mt">
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="showback">
                   <div class="">
-                    <span>Number of transfers</span><span id="total" class="pull-right"> 0</span>
+                    <span>Nombre de transferts</span><span id="total" class="pull-right"> 0</span>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="showback">
                   <div class="">
-                    <span>Number of receives</span><span id="received" class="pull-right"> 0</span>
+                    <span>Nombre de receptions</span><span id="received" class="pull-right"> 0</span>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="showback">
                   <div class="">
-                    <span>Number of sent</span><span id="sent" class="pull-right"> 0</span>
+                    <span>Nombre d'envois</span><span id="sent" class="pull-right"> 0</span>
                   </div>
                 </div>
               </div>
             </div>
                 <div class="showback">
-                    <h4 class="centered">Recent transferts</h4>
+                    <h4 class="centered">Récents transferts</h4>
                     <table id="table_transfer" class="table table-bordered table-striped table-condensed">
                     </table>
                 </div>

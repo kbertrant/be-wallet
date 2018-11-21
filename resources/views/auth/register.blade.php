@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>BeWallet - Connexion</title>
+    <title>BeWallet - Inscription</title>
     <link href={{ asset('img/favicon.png') }} rel="icon">
     <link href="{{ asset('img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
@@ -29,11 +29,11 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Account Created</h4>
+                                <h4 class="modal-title">Compte Creé</h4>
                             </div>
                             <div class="modal-body" style="padding: 30px;">
-                                Your account has been successfully created !
-                                A confirmation link has been sent to your email address to confirm your account
+                                Votre compte à été créé avec succès !
+ Un lien de confirmation a été envoyé à votre adresse e-mail pour confirmer votre compte.
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
             @endif
             <form class="form-login" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                 @csrf
-                <h2 class="form-login-heading">Sign up</h2>
+                <h2 class="form-login-heading"> INSCRIPTION</h2>
                 <div class="login-wrap">
                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                            name="name" value="{{ old('name') }}" placeholder="Ex: John DOE" required autofocus>
@@ -62,7 +62,7 @@
                         </span>
                     @endif
                     <br/>
-                    <input type="text" placeholder="Phone number"
+                    <input type="text" placeholder="telephone"
                            class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" required />
                     @if ($errors->has('phone'))
                         <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
                         </span>
                     @endif
                     <br/>
-                    <input id="password" type="password" placeholder="Password"
+                    <input id="password" type="password" placeholder="Mot de passe"
                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required />
 
                     @if ($errors->has('password'))
@@ -79,15 +79,15 @@
                         </span>
                     @endif
                     <br/>
-                    <input type="password" class="form-control" placeholder="Confirm password" name="password_confirmation" />
+                    <input type="password" class="form-control" placeholder="confirmation mot de passe" name="password_confirmation" />
                     <br/>
                     <button class="btn btn-theme btn-block" type="submit">
-                        <i class="fa fa-lock"></i> SIGN UP
+                        <i class="fa fa-lock"></i> S'INSCRIRE
                     </button>
                     <hr>
                     <div class="registration">
-                        You have an account ?<br/>
-                        <a class="" href="{{ route('login') }}">Sign in now</a>
+                        Vous avez un compte ?<br/>
+                        <a class="" href="{{ route('login') }}">CONNEXION</a>
                     </div>
                 </div>
             </form>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', ' - Home')
+@section('title', ' - Accueil')
 
 @section('stylesheets')
     <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
@@ -20,11 +20,10 @@
                     <img class="first-slide" src="{{ asset('img/carousel/carousel_bewallet1.png') }}" alt="First slide">
                     <div class="container">
                         <div class="carousel-caption text-left">
-                            <h1>TRANSFER MONEY</h1>
-                            <h2>FOR FREE</h2>
-                            <p><h5>No transfer fee when you send directly to a bank account.
-                                No hidden fee. No fees at all. Yes, really.</h5></p>
-                            <p><a class="btn btn-lg btn-success" href="{{ route('register') }}" role="button">Sign up today</a></p>
+                            <h1>TRANSFERT D'ARGENT</h1>
+                            <h2>GRATUITEMENT</h2>
+                            <p><h5>Aucun frais de transfert lorsque vous envoyez directement à un compte bancaire. Pas de frais cachés. Aucun frais du tout. Oui vraiment.</h5></p>
+                            <p><a class="btn btn-lg btn-success" href="{{ route('register') }}" role="button">Inscrivez-vous</a></p>
                         </div>
                     </div>
                 </div>
@@ -32,9 +31,9 @@
                     <img class="second-slide" src="{{ asset('img/carousel/img2.png') }}" alt="Second slide">
                     <div class="container">
                         <div class="carousel-caption text-left">
-                            <h1>ONLINE PAYMENT.</h1>
+                            <h1>PAIEMENT EN LIGNE.</h1>
                             <p></p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Plus</a></p>
                         </div>
                     </div>
                 </div>
@@ -60,38 +59,38 @@
             <div class="row">
                 <div class="col-lg-4">
                     <img class="rounded-circle" src="{{ asset('img/carousel/confidence.png') }}" alt="Generic placeholder image" width="200" height="200">
-                    <h2>INSTANT</h2>
-                    <p>It’s easy for Skrill wallet holders to send and receive money – you just need an email address. And with fees of only 1%, more money arrives.</p>
+                    <h2>INSTANTANEE</h2>
+                    <p>Les détenteurs de portefeuilles Bewallet peuvent facilement envoyer et recevoir de l’argent - vous avez simplement besoin d’une adresse électronique. Et avec des frais de seulement 1%, plus d’argent arrive.</p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <img class="rounded-circle" src="{{ asset('img/carousel/convinence.png') }}" alt="Generic placeholder image" width="200" height="200">
-                    <h2>CONFIDENCE</h2>
-                    <p>Your security is a priority. We always keep your payments and personal information safe, and our anti-fraud team protects every transaction.</p>
+                    <h2>CONFIDENTIALITE</h2>
+                    <p>Votre sécurité est une priorité. Nous gardons toujours vos paiements et vos informations personnelles en sécurité, et notre équipe anti-fraude protège chaque transaction.</p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <img class="rounded-circle" src="{{ asset('img/carousel/secure.png') }}" alt="Generic placeholder image" width="200" height="200">
-                    <h2>CONVENIENCE</h2>
-                    <p>Send and receive money, store cards, link bank accounts and pay conveniently anytime and anywhere with your email address and password.</p>
+                    <h2>COMMODITE</h2>
+                    <p>Envoyez et recevez de l'argent, stockez des cartes, établissez des liens sur des comptes bancaires et payez confortablement à tout moment et n'importe où avec votre adresse email et votre mot de passe.</p>
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
             <hr class="featurette-divider">
             <!-- Three columns of text below the carousel -->
-            <div class="text-center"><h1>HOW DOES IT WORK ?</h1></div>
+            <div class="text-center"><h1>Comment ça marche ?</h1></div>
             <div class="row">
                 <div class="col-lg-4">
                     <img class="rounded-circle" src="{{ asset('img/carousel/user.png') }}" alt="Generic placeholder image" width="200" height="200">
-                    <h2>CREATE AN ACCOUNT</h2>
-                    <p>It takes just a few minutes to create a BWallet wallet and bring all your payment details together in one place. You can choose from 40 currencies.</p>
+                    <h2>CREER UN COMPTE</h2>
+                    <p>Quelques minutes suffisent pour créer un portefeuille BWallet et regrouper toutes vos informations de paiement au même endroit. Vous pouvez choisir parmi 3 devises.</p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <img class="rounded-circle" src="{{ asset('img/carousel/make_payment.png') }}" alt="Generic placeholder image" width="200" height="200">
-                    <h2>MAKE PAYMENT</h2>
-                    <p>Stay in control with simple, secure and quick payment methods, including stored cards and your account balance.</p>
+                    <h2>EFFECTUER UN PAIEMENT</h2>
+                    <p>Gardez le contrôle grâce à des méthodes de paiement simples, sécurisées et rapides, notamment les cartes stockées et le solde de votre compte.</p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <img class="rounded-circle" src="{{ asset('img/carousel/withdraws.png') }}" alt="Generic placeholder image" width="200" height="200">
-                    <h2>WITHDRAW FUNDS</h2>
-                    <p>Move funds – including winnings – from Skrill to your bank account instantly or make ATM withdrawals.</p>
+                    <h2>RETRAIT DES FONDS</h2>
+                    <p>Déplacez instantanément des fonds - y compris les gains - de Skrill vers votre compte bancaire ou effectuez des retraits à un guichet automatique.</p>
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
 
@@ -102,8 +101,8 @@
 
             <div class="row featurette">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">EXCLUSIVE <span class="text-muted">BWALLET OFFERS</span></h2>
-                    <p class="lead">Enjoy easy access to a range of the latest merchant offers, deals and bonuses. Updated every month.</p>
+                    <h2 class="featurette-heading">OFFRES EXCLUSIVES <span class="text-muted">BWALLET</span></h2>
+                    <p class="lead">Profitez d'un accès facile à une gamme des dernières offres, offres et bonus des marchands. Mis à jour tous les mois.</p>
                 </div>
                 <div class="col-md-5">
                     <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/carousel/offers_bewallet.png') }}" alt="Generic placeholder image">
@@ -114,8 +113,8 @@
 
             <div class="row featurette">
                 <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading">Access your money <span class="text-muted">wherever</span> you are 24/7</h2>
-                    <p class="lead">Our fast, easy to use and secure app lets you access your account wherever you need it.</p>
+                    <h2 class="featurette-heading">ACCEDEZ A VOTRE ARGENT <span class="text-muted">DISPONIBLE</span> 24/7</h2>
+                    <p class="lead">Notre application rapide, facile à utiliser et sécurisée vous permet d'accéder à votre compte partout où vous en avez besoin.</p>
                 </div>
                 <div class="col-md-5 order-md-1">
                     <img class="featurette-image img-fluid mx-auto" src="{{ asset('img/carousel/hour_bewallet.png') }}" alt="Generic placeholder image">
@@ -130,9 +129,9 @@
 
         <!-- FOOTER -->
         <footer class="container ">
-            <p class="float-left"><a href="#">ABOUT US </a>|</p><p class="float-left"><a href="#"> SUPPORT </a>|</p><p class="float-left"><a href="#"> SECURITY </a>|</p><p class="float-left"><a href="#"> FEES </a>|</p>
-            <p class="float-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2018 BWallet Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            <p class="float-left"><a href="#">A PROPOS </a>|</p><p class="float-left"><a href="#"> SUPPORT </a>|</p><p class="float-left"><a href="#"> SECURITE </a>|</p><p class="float-left"><a href="#"> FRAIS </a>|</p>
+            <p class="float-right"><a href="#">Haut de page</a></p>
+            <p>&copy; 2018 BWallet Inc. &middot; <a href="#">Privée</a> &middot; <a href="#">Termes</a></p>
         </footer>
     </main>
 @endsection
