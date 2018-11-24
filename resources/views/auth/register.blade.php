@@ -13,6 +13,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Phone control core CSS -->
+    <link rel="stylesheet" href="{{ asset('build/css/intlTelInput.css') }}">
+    
     <!--external css-->
     <link href="{{ asset('lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
     <!-- Custom styles for this template -->
@@ -62,8 +65,10 @@
                         </span>
                     @endif
                     <br/>
-                    <input type="text" placeholder="telephone"
-                           class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" required />
+                    <input type="tel" name="phone" id="phone" 
+                           class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"  required />
+                           <span id="valid-msg" class="hide">✓ Valid</span>
+                           <span id="error-msg" class="hide"></span>
                     @if ($errors->has('phone'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('phone') }}</strong>
@@ -93,6 +98,7 @@
             </form>
         </div>
     </div>
+    <script src="{{ asset('build/js/intlTelInput.js') }}"></script>
     <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
     <!--BACKSTRETCH-->
@@ -106,6 +112,10 @@
                 $('#myModal').modal('show');
             }
         })
+
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+      utilsScript: "{{ asset('build/js/utils.js') }}",});
     </script>
 </body>
 </html>
