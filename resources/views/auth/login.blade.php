@@ -25,10 +25,7 @@
         <div class="container">
             <form class="form-login" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 @csrf
-<<<<<<< HEAD
                 <h2 class="form-login-heading">CONNEXION</h2>
-=======
-                <h2 class="form-login-heading">Sign in now</h2>
                 @if(session('account_error'))
                     <div class="alert alert-danger">{{ session('account-error') }}</div>
                 @endif
@@ -37,7 +34,7 @@
                             <strong>{{ $errors->first('email') }}</strong>
                     </div>
                 @endif
->>>>>>> origin/master
+
                 <div class="login-wrap">
                     <input id="email" type="email" placeholder="Ex: username@yahoo.com"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
@@ -101,9 +98,9 @@
     <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
     <!--BACKSTRETCH-->
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-    <script type="text/javascript" src="{{ asset('lib/jquery.backstretch.min.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ asset('lib/jquery.backstretch.min.js') }}"></script>-->
     <script>
-        $.backstretch("img/login-bg.jpg", { speed: 500 });
+        //$.backstretch("img/login-bg.jpg", { speed: 500 });
     </script>
 </body>
 </html>
