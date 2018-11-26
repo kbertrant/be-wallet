@@ -3,7 +3,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="{{ route('home') }}" class="logo"><img src="{{ asset('img/logo_bewallet.png') }}"></a>
+    <a href="{{ route('home') }}" class="logo"><img src="{{ asset('img/logo_bewallet_back.png') }}"></a>
     <!--logo end-->
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
